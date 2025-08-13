@@ -96,7 +96,7 @@ export default function Footer() {
               Udaini - Sampatchak Rd,
             </div>
             <div className="text-white/80 text-sm mb-2">
-              Udaini, Bhelaura, Bihar
+              Bhelaura, Bihar
             </div>
             <div className="text-white/80 text-sm mb-2">India</div>
             <div className="text-white/80 text-sm mb-2">
