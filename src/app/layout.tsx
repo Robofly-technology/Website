@@ -31,10 +31,10 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${raleway.variable} ${playfair.variable} ${lato.variable}`}
+      suppressHydrationWarning
     >
       <body>
         <Navbar />
-        {/* min-w-screen */}
         <main className="min-h-screen overflow-x-hidden pt-16">
           {children}
         </main>

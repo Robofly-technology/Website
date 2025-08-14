@@ -40,9 +40,10 @@ export async function DELETE(
         { status: 403 }
       );
     }
+// ...existing code...
 
     const p = await params;
-    const logId = parseInt(p.id);
+    const logId = p.id; // Use as string
 
     // Validate that the ID is a valid MongoDB ObjectId
     if (!mongoose.Types.ObjectId.isValid(logId)) {
@@ -55,6 +56,7 @@ export async function DELETE(
     // Find and delete the log
     const deletedLog = await Logg.findByIdAndDelete(logId);
 
+// ...existing code...
     if (!deletedLog) {
       return NextResponse.json({ error: "Log not found" }, { status: 404 });
     }
