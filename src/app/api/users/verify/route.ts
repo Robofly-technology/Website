@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// ...existing code...
 import { dbConnect } from "@/lib/dbConnect";
 import User from "@/models/user";
 import { NextResponse } from "next/server";
@@ -85,7 +87,7 @@ export async function POST(request: Request) {
     }
 
     // Find user by username or email
-    let user = await User.findOne({
+     const user = await User.findOne({
       $or: [{ username: identifier }, { email: identifier }],
     });
 

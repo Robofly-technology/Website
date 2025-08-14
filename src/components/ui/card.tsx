@@ -3,7 +3,6 @@ import React from "react";
 
 type CardProps = React.PropsWithChildren<{
   className?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }>;
 
