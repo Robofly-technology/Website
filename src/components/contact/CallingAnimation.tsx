@@ -1,10 +1,27 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 // import { motion } from "framer-motion";
 // import { colorPalette } from "@/utils/variables";
 import { PhoneCall, Building2, Mail, MapPin, Phone } from "lucide-react";
 
 export default function CallingAnimation() {
+  const [emailHref, setEmailHref] = useState<string>("");
+  useEffect(() => {
+    const isMobile =
+      typeof window !== "undefined" &&
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        window.navigator.userAgent
+      );
+    if (isMobile) {
+      setEmailHref("mailto:arpana@roboflytech.com?subject=Query");
+    } else {
+      setEmailHref(
+        "https://mail.google.com/mail/?view=cm&to=arpana@roboflytech.com"
+      );
+    }
+  }, []);
   return (
     <section className="w-full flex justify-center items-center bg-gray-900 py-16 px-4">
       <div className="w-full max-w-5xl rounded-2xl border border-green-600 p-6">
@@ -38,13 +55,15 @@ export default function CallingAnimation() {
                 <MapPin className="w-4 h-4 mt-1 text-emerald-400" />
                 Udaini, Patna, Bihar, IN
               </a>
-              <a
-                href="https://mail.google.com/mail/?view=cm&to=arpana@roboflytech.com"
-                className="flex items-start gap-2 hover:text-emerald-300"
-              >
-                <Mail className="w-4 h-4 mt-1 text-emerald-400" />{" "}
-                arpana@roboflytech.com
-              </a>
+              {emailHref && (
+                <a
+                  href={emailHref}
+                  className="flex items-start gap-2 hover:text-emerald-300"
+                >
+                  <Mail className="w-4 h-4 mt-1 text-emerald-400" />{" "}
+                  arpana@roboflytech.com
+                </a>
+              )}
               <a
                 href="tel:+917407583193"
                 className="flex items-start gap-2 hover:text-emerald-300"
