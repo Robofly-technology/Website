@@ -95,9 +95,7 @@ export default function Footer() {
             <div className="text-white/80 text-sm mb-2">
               Udaini - Sampatchak Rd,
             </div>
-            <div className="text-white/80 text-sm mb-2">
-              Bhelaura, Bihar
-            </div>
+            <div className="text-white/80 text-sm mb-2">Bhelaura, Bihar</div>
             <div className="text-white/80 text-sm mb-2">India</div>
             <div className="text-white/80 text-sm mb-2">
               Email:{" "}
@@ -200,7 +198,7 @@ export default function Footer() {
             <span className="text-xs text-white/60">
               &copy; {new Date().getFullYear()} Robofly. Crafted in India.
             </span>
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               <Link
                 href="/privacy"
                 className="text-xs text-white/60 hover:text-green-200 transition"
@@ -213,7 +211,7 @@ export default function Footer() {
               >
                 Terms of Service
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

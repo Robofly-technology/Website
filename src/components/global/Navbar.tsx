@@ -28,6 +28,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [catalogOpen, setCatalogOpen] = useState(false);
   const [mobileCatalogOpen, setMobileCatalogOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const catalogRef = useRef<HTMLDivElement>(null);
 
   // Handle scroll behavior
@@ -75,9 +76,20 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
+  const openMobileMenu = () => {
+    setIsAnimating(true);
+    setMobileOpen(true);
+  };
+
   const closeMobileMenu = () => {
+    setIsAnimating(true);
     setMobileOpen(false);
     setMobileCatalogOpen(false);
+
+    // Reset animation state after transition completes
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 350);
   };
 
   return (
@@ -173,8 +185,8 @@ export default function Navbar() {
             {/* Mobile menu button */}
             <div className="lg:hidden flex-shrink-0">
               <button
-                onClick={() => setMobileOpen(true)}
-                className="p-2 rounded-lg transition-colors hover:bg-white/10"
+                onClick={openMobileMenu}
+                className="p-2 rounded-lg transition-all duration-200 hover:bg-white/10 hover:scale-105 active:scale-95"
                 style={{ color: colorPalette.white }}
                 aria-label="Open main menu"
               >
@@ -186,32 +198,44 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      {mobileOpen && (
+      {(mobileOpen || isAnimating) && (
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/50 transition-opacity"
+            className={`fixed inset-0 bg-black/50 transition-all duration-300 ease-in-out ${
+              mobileOpen ? "opacity-100" : "opacity-0"
+            }`}
             onClick={closeMobileMenu}
           />
 
           {/* Mobile Menu Panel */}
           <div
-            className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-xl overflow-hidden"
+            className={`fixed top-0 right-0 bottom-0 w-auto max-w-sm bg-white shadow-xl overflow-hidden transform transition-all duration-300 ease-in-out ${
+              mobileOpen
+                ? "translate-x-0 opacity-100"
+                : "translate-x-full opacity-0"
+            }`}
             style={{
               background: `linear-gradient(135deg, #ffffff 0%, #f8fffe 25%, ${colorPalette.green1} 100%)`,
             }}
           >
             {/* Mobile Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/20">
+            <div
+              className={`flex items-center justify-between p-4 border-b border-white/20 transform transition-all duration-500 ease-out ${
+                mobileOpen
+                  ? "translate-y-0 opacity-100"
+                  : "-translate-y-4 opacity-0"
+              }`}
+            >
               <Link
                 href="/home"
                 onClick={closeMobileMenu}
-                className="flex items-center"
+                className="flex items-center group"
               >
                 <img
                   src={imgSrc_h_2}
                   alt="Robofly Logo"
-                  className="h-8 w-auto"
+                  className="h-8 w-auto group-hover:scale-105 transition-transform duration-300"
                   style={{
                     filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
                   }}
@@ -219,7 +243,7 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={closeMobileMenu}
-                className="p-2 rounded-lg transition-colors hover:bg-white/10 flex-shrink-0"
+                className="p-2 rounded-lg transition-all duration-200 hover:bg-white/10 flex-shrink-0 hover:rotate-90 active:scale-95"
                 style={{ color: colorPalette.white }}
                 aria-label="Close menu"
               >
@@ -229,29 +253,60 @@ export default function Navbar() {
 
             {/* Mobile Navigation Links */}
             <div className="flex flex-col py-4 space-y-1 max-h-full overflow-y-auto">
-              <NavLink href="/home" onClick={closeMobileMenu} isMobile={true}>
-                Home
-              </NavLink>
+              <div
+                className={`transform transition-all duration-300 ease-out ${
+                  mobileOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-8 opacity-0"
+                }`}
+                style={{ transitionDelay: "100ms" }}
+              >
+                <NavLink href="/home" onClick={closeMobileMenu} isMobile={true}>
+                  Home
+                </NavLink>
+              </div>
 
               {/* Mobile Catalog Section */}
-              <div className="px-4">
+              <div
+                className={`px-4 transform transition-all duration-300 ease-out ${
+                  mobileOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-8 opacity-0"
+                }`}
+                style={{ transitionDelay: "150ms" }}
+              >
                 <button
-                  className="flex items-center justify-between w-full py-3 text-left font-medium transition-colors rounded-lg hover:bg-white/10"
+                  className="flex items-center justify-between w-full py-3 text-left font-medium transition-all duration-200 rounded-lg hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98]"
                   style={{ color: "#000000" }}
                   onClick={() => setMobileCatalogOpen(!mobileCatalogOpen)}
                   aria-expanded={mobileCatalogOpen}
                 >
                   Catalog
                   <FaChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 flex-shrink-0 ${
+                    className={`w-4 h-4 transition-transform duration-300 flex-shrink-0 ${
                       mobileCatalogOpen ? "rotate-180" : ""
                     }`}
                   />
                 </button>
 
                 {/* Mobile Catalog Items */}
-                {mobileCatalogOpen && (
-                  <div className="ml-4 mt-2 space-y-1">
+                <div
+                  className={`ml-4 mt-2 space-y-1 overflow-hidden transition-all duration-300 ease-in-out ${
+                    mobileCatalogOpen
+                      ? "max-h-32 opacity-100"
+                      : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <div
+                    className={`transform transition-all duration-200 ease-out ${
+                      mobileCatalogOpen
+                        ? "translate-y-0 opacity-100"
+                        : "-translate-y-2 opacity-0"
+                    }`}
+                    style={{
+                      transitionDelay: mobileCatalogOpen ? "100ms" : "0ms",
+                    }}
+                  >
                     <NavLink
                       href="/products"
                       onClick={closeMobileMenu}
@@ -259,6 +314,17 @@ export default function Navbar() {
                     >
                       Products
                     </NavLink>
+                  </div>
+                  <div
+                    className={`transform transition-all duration-200 ease-out ${
+                      mobileCatalogOpen
+                        ? "translate-y-0 opacity-100"
+                        : "-translate-y-2 opacity-0"
+                    }`}
+                    style={{
+                      transitionDelay: mobileCatalogOpen ? "150ms" : "0ms",
+                    }}
+                  >
                     <NavLink
                       href="/services"
                       onClick={closeMobileMenu}
@@ -267,26 +333,55 @@ export default function Navbar() {
                       Services
                     </NavLink>
                   </div>
-                )}
+                </div>
               </div>
 
-              <NavLink href="/blog" onClick={closeMobileMenu} isMobile={true}>
-                Blog
-              </NavLink>
-              <NavLink
-                href="/contact"
-                onClick={closeMobileMenu}
-                isMobile={true}
+              <div
+                className={`transform transition-all duration-300 ease-out ${
+                  mobileOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-8 opacity-0"
+                }`}
+                style={{ transitionDelay: "200ms" }}
               >
-                Contact
-              </NavLink>
-              <NavLink
-                href="/upcoming_services"
-                onClick={closeMobileMenu}
-                isMobile={true}
+                <NavLink href="/blog" onClick={closeMobileMenu} isMobile={true}>
+                  Blog
+                </NavLink>
+              </div>
+
+              <div
+                className={`transform transition-all duration-300 ease-out ${
+                  mobileOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-8 opacity-0"
+                }`}
+                style={{ transitionDelay: "250ms" }}
               >
-                Upcoming Services
-              </NavLink>
+                <NavLink
+                  href="/contact"
+                  onClick={closeMobileMenu}
+                  isMobile={true}
+                >
+                  Contact
+                </NavLink>
+              </div>
+
+              <div
+                className={`transform transition-all duration-300 ease-out ${
+                  mobileOpen
+                    ? "translate-x-0 opacity-100"
+                    : "translate-x-8 opacity-0"
+                }`}
+                style={{ transitionDelay: "300ms" }}
+              >
+                <NavLink
+                  href="/upcoming_services"
+                  onClick={closeMobileMenu}
+                  isMobile={true}
+                >
+                  Upcoming Services
+                </NavLink>
+              </div>
             </div>
           </div>
         </div>
@@ -329,8 +424,8 @@ function NavLink({
       <Link
         href={href || "#"}
         onClick={onClick}
-        className={`block px-4 py-3 text-base font-medium transition-colors rounded-lg mx-4 ${
-          isActive ? "bg-white/20" : "hover:bg-white/10"
+        className={`block px-4 py-3 text-base font-medium transition-all duration-200 rounded-lg mx-4 hover:scale-[1.02] active:scale-[0.98] ${
+          isActive ? "bg-white/20 shadow-sm" : "hover:bg-white/10"
         }`}
         style={{ color: "#000000" }}
       >
