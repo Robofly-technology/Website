@@ -37,12 +37,9 @@ export default function RootLayout({
       </head>
       <body>
         <Navbar />
-        <main
-          suppressHydrationWarning
-          className="min-h-screen overflow-x-hidden pt-16"
-        >
-          {children}
-        </main>
+
+        <main className="min-h-screen overflow-x-hidden pt-16">{children}</main>
+
         <Footer />
       </body>
     </html>
