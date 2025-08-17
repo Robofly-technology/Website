@@ -1,5 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
+import { useState, useEffect } from "react";
+/* eslint-disable @next/next/no-img-element */
+
 import { motion } from "framer-motion";
 import { Poppins } from "next/font/google";
 import { colorPalette } from "@/utils/variables";
@@ -18,6 +20,21 @@ interface SocialLinkProps {
 }
 
 export default function Footer() {
+  const [emailHref, setEmailHref] = useState<string>("");
+  useEffect(() => {
+    const isMobile =
+      typeof window !== "undefined" &&
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        window.navigator.userAgent
+      );
+    if (isMobile) {
+      setEmailHref("mailto:arpana@roboflytech.com?subject=Query");
+    } else {
+      setEmailHref(
+        "https://mail.google.com/mail/?view=cm&to=arpana@roboflytech.com"
+      );
+    }
+  }, []);
   return (
     <motion.footer
       initial={{ opacity: 0, y: 50 }}
@@ -99,12 +116,14 @@ export default function Footer() {
             <div className="text-white/80 text-sm mb-2">India</div>
             <div className="text-white/80 text-sm mb-2">
               Email:{" "}
-              <a
-                href="https://mail.google.com/mail/?view=cm&to=arpana@roboflytech.com"
-                className="underline hover:text-green-200 transition"
-              >
-                {"arpana@roboflytech.com"}
-              </a>
+              {emailHref && (
+                <a
+                  href={emailHref}
+                  className="underline hover:text-green-200 transition"
+                >
+                  {"arpana@roboflytech.com"}
+                </a>
+              )}
             </div>
             <div className="text-white/80 text-sm">
               Phone:{" "}
@@ -183,11 +202,13 @@ export default function Footer() {
                 icon={<FaLinkedin size={20} />}
                 label="LinkedIn"
               />
-              <SocialLink
-                href="https://mail.google.com/mail/?view=cm&to=arpana@roboflytech.com"
-                icon={<FaEnvelope size={20} />}
-                label="Email"
-              />
+              {emailHref && (
+                <SocialLink
+                  href={emailHref}
+                  icon={<FaEnvelope size={20} />}
+                  label="Email"
+                />
+              )}
             </div>
           </div>
         </div>
