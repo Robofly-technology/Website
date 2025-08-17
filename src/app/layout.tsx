@@ -31,11 +31,16 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${raleway.variable} ${playfair.variable} ${lato.variable}`}
-      suppressHydrationWarning
     >
+      <head>
+        <link rel="icon" href="/images/robofly.png" type="image/png" />
+      </head>
       <body>
         <Navbar />
-        <main className="min-h-screen overflow-x-hidden pt-16">
+        <main
+          suppressHydrationWarning
+          className="min-h-screen overflow-x-hidden pt-16"
+        >
           {children}
         </main>
         <Footer />
