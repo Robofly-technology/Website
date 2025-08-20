@@ -7,22 +7,22 @@ import { colorPalette } from "@/utils/variables";
 
 export default function RecognitionSection() {
   const recognizedBy = [
-    { src: "/images/Recognition_Support/meity.png", alt: "MeitY" },
-    { src: "/images/Recognition_Support/EAI.png", alt: "EAI" },
-    { src: "/images/Recognition_Support/dpiit.png", alt: "DPIIT" },
+    { src: "/images/Recognition_Support/meity.webp", alt: "MeitY" },
+    { src: "/images/Recognition_Support/EAI.webp", alt: "EAI" },
+    { src: "/images/Recognition_Support/dpiit.webp", alt: "DPIIT" },
     {
-      src: "/images/Recognition_Support/startup bihar.png",
+      src: "/images/Recognition_Support/startup bihar.webp",
       alt: "Startup Bihar",
     },
   ];
 
   const supportedBy = [
     {
-      src: "/images/Recognition_Support/aic bansthali.jpeg.jpg",
+      src: "/images/Recognition_Support/aic bansthali.jpeg.webp",
       alt: "AIC Banasthali",
     },
     {
-      src: "/images/Recognition_Support/iit mandi.png",
+      src: "/images/Recognition_Support/iit mandi.webp",
       alt: "IIT Mandi Catalyst",
     },
   ];
