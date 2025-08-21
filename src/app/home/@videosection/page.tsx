@@ -9,7 +9,7 @@ import "next-cloudinary/dist/cld-video-player.css";
 // Loading Component
 const LoadingSpinner = () => (
   <motion.div
-    className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-600 via-green-600 to-gray-600"
+    className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-600 via-green-600 to-gray-600 z-20"
     initial={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     transition={{ duration: 0.8, ease: "easeOut" }}
@@ -75,78 +75,116 @@ export default function VideoSection() {
   }, []);
 
   return (
-    <section className="relative w-full h-screen min-h-[100dvh] overflow-hidden">
-      {/* Background Video */}
-      <div className="absolute inset-0 -z-10">
-        <CldVideoPlayer
-          src={videoSrc}
-          width={1920}
-          height={1080}
-          className="absolute inset-0 object-cover min-h-screen"
-          autoplay
-          loop
-          muted
-          controls={false}
-          playsinline
-        />
-      </div>
+    <>
+      {/* Add custom CSS for video coverage */}
+      <style jsx>{`
+        .video-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
 
-      {/* Loading Overlay */}
-      <AnimatePresence>{isLoading && <LoadingSpinner />}</AnimatePresence>
+        .video-container :global(.cld-video-player) {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+          transform: translate(-50%, -50%);
+          object-fit: cover;
+        }
 
-      {/* Main Content */}
-      <AnimatePresence>
-        {!isLoading && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 text-white"
-          >
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.2,
-                delay: 0.3,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="text-3xl md:text-5xl font-bold max-w-3xl drop-shadow-lg"
-            >
-              India&apos;s Future Leader in Advanced Drone Solutions and Impact
-            </motion.h1>
+        .video-container :global(.cld-video-player video) {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+          transform: translate(-50%, -50%);
+          object-fit: cover;
+        }
+      `}</style>
 
+      <section className="relative w-full h-screen min-h-[100dvh] overflow-hidden">
+        {/* Background Video */}
+        <div className="video-container">
+          <CldVideoPlayer
+            src={videoSrc}
+            width={1920}
+            height={1080}
+            autoplay
+            loop
+            muted
+            controls={false}
+            playsinline
+          />
+        </div>
+
+        {/* Loading Overlay */}
+        <AnimatePresence>{isLoading && <LoadingSpinner />}</AnimatePresence>
+
+        {/* Main Content */}
+        <AnimatePresence>
+          {!isLoading && (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1,
-                delay: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="mt-8 flex flex-col md:flex-row gap-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 text-white"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleExploreClick}
-                className="inline-flex items-center justify-center gap-2 font-medium text-black transition-all duration-300 hover:shadow-lg hover:bg-gray-100 rounded-lg px-6 py-3 text-base bg-white"
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1.2,
+                  delay: 0.3,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="text-2xl md:text-5xl font-bold max-w-3xl drop-shadow-lg"
               >
-                Explore
-              </motion.button>
+                India&apos;s Future Leader in Advanced Drone Solutions and
+                Impact
+              </motion.h1>
 
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.8,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="mt-8 flex flex-col md:flex-row gap-4"
               >
-                <ContactButton />
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleExploreClick}
+                  className="inline-flex items-center justify-center gap-2 font-medium text-black transition-all duration-300 hover:shadow-lg hover:bg-gray-100 rounded-lg px-6 py-3 text-base bg-white"
+                >
+                  Explore
+                </motion.button>
+
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ContactButton />
+                </motion.div>
               </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
-      <div ref={endRef} className="w-full h-1" />
-    </section>
+        <div ref={endRef} className="w-full h-1" />
+      </section>
+    </>
   );
 }
