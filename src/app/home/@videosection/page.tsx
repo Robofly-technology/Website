@@ -34,7 +34,7 @@ const LoadingSpinner = () => (
         transition={{ delay: 0.3 }}
         className="text-center"
       >
-        <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
+        <h3 className="text-xl md:text-3xl font-semibold text-white mb-2">
           Loading..
         </h3>
         <motion.div
@@ -147,7 +147,7 @@ export default function VideoSection() {
                   delay: 0.3,
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
-                className="text-2xl md:text-5xl font-bold max-w-3xl drop-shadow-lg"
+                className="text-3xl md:text-5xl font-bold max-w-3xl drop-shadow-lg"
               >
                 India&apos;s Future Leader in Advanced Drone Solutions and
                 Impact
