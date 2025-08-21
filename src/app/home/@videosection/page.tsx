@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -83,7 +82,7 @@ export default function VideoSection() {
           src={videoSrc}
           width={1920}
           height={1080}
-           className="absolute inset-0 object-cover min-h-screen"
+          className="absolute inset-0 object-cover min-h-screen"
           autoplay
           loop
           muted
