@@ -3,7 +3,7 @@ import {
   generateOTP,
   storeOTP,
   checkRateLimit,
-  getRemainingAttempts,
+  
 } from "@/utils/otpUtils";
 import { sendOTPEmail, sendLoginOTPEmail } from "@/utils/emailService"; // Add sendLoginOTPEmail
 
