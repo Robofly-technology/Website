@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-/* eslint-disable @next/next/no-img-element */
+import { CldImage } from "next-cloudinary";
 
 import { motion } from "framer-motion";
 import { Poppins } from "next/font/google";
-import { colorPalette } from "@/utils/variables";
+import { colorPalette, imgSrc } from "@/utils/variables";
 import Link from "next/link";
 import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 
@@ -77,11 +77,14 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-3 mb-6 group">
-              <img
-                src="/images/robofly.png"
+              <CldImage
+                src={imgSrc}
                 alt="Robofly Logo"
+                width={48}
+                height={48}
                 className="w-12 h-12 border-2"
                 style={{ borderRadius: 12, borderColor: colorPalette.green5 }}
+                loading="lazy"
               />
               <span
                 className="text-2xl font-bold tracking-wide"

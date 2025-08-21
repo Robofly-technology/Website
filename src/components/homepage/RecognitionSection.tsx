@@ -1,28 +1,50 @@
 "use client";
 
 import { motion, useAnimation, useInView } from "framer-motion";
-import Image from "next/image";
+// import Image from "next/image";
 import { useRef, useEffect } from "react";
 import { colorPalette } from "@/utils/variables";
+import { CldImage } from "next-cloudinary";
 
 export default function RecognitionSection() {
+  // const recognizedBy = [
+  //   { src: "/images/Recognition_Support/meity.png", alt: "MeitY" },
+  //   { src: "/images/Recognition_Support/EAI.png", alt: "EAI" },
+  //   { src: "/images/Recognition_Support/dpiit.png", alt: "DPIIT" },
+  //   {
+  //     src: "/images/Recognition_Support/startup bihar.png",
+  //     alt: "Startup Bihar",
+  //   },
+  // ];
+
+  // const supportedBy = [
+  //   {
+  //     src: "/images/Recognition_Support/aic bansthali.jpeg.png",
+  //     alt: "AIC Banasthali",
+  //   },
+  //   {
+  //     src: "/images/Recognition_Support/iit mandi.png",
+  //     alt: "IIT Mandi Catalyst",
+  //   },
+  // ];
+
   const recognizedBy = [
-    { src: "/images/Recognition_Support/meity.webp", alt: "MeitY" },
-    { src: "/images/Recognition_Support/EAI.webp", alt: "EAI" },
-    { src: "/images/Recognition_Support/dpiit.webp", alt: "DPIIT" },
+    { src: "meity_fhsqca", alt: "MeitY" },
+    { src: "EAI_nhjzyg", alt: "EAI" },
+    { src: "dpiit_jsc1x6", alt: "DPIIT" },
     {
-      src: "/images/Recognition_Support/startup bihar.webp",
+      src: "startup_bihar_kfnsh3",
       alt: "Startup Bihar",
     },
   ];
 
   const supportedBy = [
     {
-      src: "/images/Recognition_Support/aic bansthali.jpeg.webp",
+      src: "aic_bansthali.jpeg_sh2fe2",
       alt: "AIC Banasthali",
     },
     {
-      src: "/images/Recognition_Support/iit mandi.webp",
+      src: "iit_mandi_vukogu",
       alt: "IIT Mandi Catalyst",
     },
   ];
@@ -121,7 +143,7 @@ export default function RecognitionSection() {
               }`}
               style={{ boxShadow: `0 2px 8px ${colorPalette.green4}33` }}
             >
-              <Image
+              <CldImage
                 src={logo.src}
                 alt={logo.alt}
                 width={90}
@@ -159,12 +181,13 @@ export default function RecognitionSection() {
             className="flex justify-center items-center p-3 rounded-lg bg-white shadow-sm border"
             style={{ boxShadow: `0 2px 8px ${colorPalette.green4}33` }}
           >
-            <Image
+            <CldImage
               src={logo.src}
               alt={logo.alt}
               width={90}
               height={45}
               className="object-contain h-12 w-auto"
+              loading="lazy"
             />
           </motion.div>
         ))}

@@ -298,6 +298,8 @@ export default function CreateBlogPage() {
                 <p className="text-underlined text-blue-500">
                   <a
                     className=" text-blue-500"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     href="https://drive.google.com/file/d/11DSoTALPyBf5e_5LO28QnLoAN9bRgPH-/view?usp=drive_link"
                   >
                     DEMO
@@ -336,6 +338,8 @@ export default function CreateBlogPage() {
                   <p className="text-underlined text-blue-500">
                     <a
                       className=" text-blue-500"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       href="https://drive.google.com/file/d/1H_MVObEyur0e_0dTcZ6gkbAZGzGevA_X/view?usp=drive_link"
                     >
                       DEMO

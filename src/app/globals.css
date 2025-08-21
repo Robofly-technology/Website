@@ -1,5 +1,7 @@
+
 /* 
-    
+import "next-cloudinary/dist/cld-video-player.css";
+
 @import "tailwindcss";
 body {
   font-family: "Lato", sans-serif;

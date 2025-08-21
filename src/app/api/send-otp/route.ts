@@ -26,20 +26,20 @@ export async function POST(request: Request) {
     const ipRateCheck = await checkRateLimit(`ip:${ip}`, 100);
 
     if (!emailRateCheck) {
-      const remaining = await getRemainingAttempts(`email:${email}`, 100);
+      // const remaining = await getRemainingAttempts(`email:${email}`, 100);
       return NextResponse.json(
         {
-          error: `Too many attempts. Try again later. Remaining attempts: ${remaining}`,
+          error: `Too many attempts. Try again later. `,
         },
         { status: 429 }
       );
     }
 
     if (!ipRateCheck) {
-      const remaining = await getRemainingAttempts(`ip:${ip}`, 100);
+      // const remaining = await getRemainingAttempts(`ip:${ip}`, 100);
       return NextResponse.json(
         {
-          error: `Too many attempts. Try again later. Remaining attempts: ${remaining}`,
+          error: `Too many attempts. Try again later. `,
         },
         { status: 429 }
       );

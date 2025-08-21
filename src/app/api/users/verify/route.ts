@@ -129,7 +129,7 @@ export async function POST(request: Request) {
         {
           error:
             "Wrong credentials. Please contact the company to retrieve forgotten passwords",
-          remainingAttempts: Math.max(0, 5 - rateLimitInfo.attempts),
+          // remainingAttempts: Math.max(0, 5 - rateLimitInfo.attempts),
         },
         { status: 401 }
       );

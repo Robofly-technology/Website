@@ -18,7 +18,7 @@ export default function UpdateBlogPage() {
   const router = useRouter();
   const params = useParams();
   const blogId = params.id as string;
-  
+
   const [loading, setLoading] = useState(true);
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [message, setMessage] = useState<{
@@ -292,6 +292,8 @@ export default function UpdateBlogPage() {
                 <p className="text-underlined text-blue-500">
                   <a
                     className=" text-blue-500"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     href="https://drive.google.com/file/d/11DSoTALPyBf5e_5LO28QnLoAN9bRgPH-/view?usp=drive_link"
                   >
                     DEMO
@@ -317,7 +319,7 @@ export default function UpdateBlogPage() {
                     want, then upload it to a gen AI and use the following
                     prompt:
                   </p>
-                   <p className="italic mt-1">
+                  <p className="italic mt-1">
                     &quot;For the attached blog, design a HTML code to display
                     it as a blog on my website, just give me the HTML snippet
                     for inside the body tag (don&apos;t include the opening and
@@ -330,6 +332,8 @@ export default function UpdateBlogPage() {
                   <p className="text-underlined text-blue-500">
                     <a
                       className=" text-blue-500"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       href="https://drive.google.com/file/d/1H_MVObEyur0e_0dTcZ6gkbAZGzGevA_X/view?usp=drive_link"
                     >
                       DEMO

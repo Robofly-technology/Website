@@ -325,7 +325,8 @@ export default function CreateProductPage() {
                   Enter the Cloudinary image ID (e.g.,
                   &quot;robofly/blogs/blog-image-1&quot;) - Image must be hosted on admin&nbsp;s cloudinary account, none other.
                 </p>
-                 <p className="text-underlined text-blue-500"><a className=" text-blue-500" href="https://drive.google.com/file/d/11DSoTALPyBf5e_5LO28QnLoAN9bRgPH-/view?usp=drive_link">DEMO</a></p>
+                 <p className="text-underlined text-blue-500"><a className=" text-blue-500" target="_blank"
+              rel="noopener noreferrer" href="https://drive.google.com/file/d/11DSoTALPyBf5e_5LO28QnLoAN9bRgPH-/view?usp=drive_link">DEMO</a></p>
                
               </div>
               <div className="flex justify-end">

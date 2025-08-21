@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -7,6 +6,7 @@ import { Poppins } from "next/font/google";
 import { colorPalette, imgSrc_h_2 } from "@/utils/variables";
 import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import { CldImage } from "next-cloudinary";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -113,13 +113,16 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex-shrink-0 min-w-0">
               <Link href="/home" className="flex items-center group">
-                <img
+                <CldImage
                   src={imgSrc_h_2}
                   alt="Robofly Logo"
+                  width={120} // adjust as needed
+                  height={48} // adjust as needed
                   className="h-8 sm:h-10 lg:h-12 xl:h-14 w-auto group-hover:scale-105 transition-transform duration-300"
                   style={{
                     filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
                   }}
+                  loading="lazy"
                 />
               </Link>
             </div>
@@ -232,13 +235,16 @@ export default function Navbar() {
                 onClick={closeMobileMenu}
                 className="flex items-center group"
               >
-                <img
+                <CldImage
                   src={imgSrc_h_2}
                   alt="Robofly Logo"
-                  className="h-8 w-auto group-hover:scale-105 transition-transform duration-300"
+                  width={120} // adjust as needed
+                  height={48} // adjust as needed
+                  className="h-8 sm:h-10 lg:h-12 xl:h-14 w-auto group-hover:scale-105 transition-transform duration-300"
                   style={{
                     filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
                   }}
+                  loading="lazy"
                 />
               </Link>
               <button

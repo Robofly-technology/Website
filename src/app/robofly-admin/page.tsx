@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 // import { colorPalette } from "@/utils/variables";
 import LoadingSpinner from "@/components/global/LoadingSpinner";
 import OTPModal from "@/components/common/OTPModal"; // Add this import
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
+import { imgSrc } from "@/utils/variables";
 import {
   validateSessionData,
   clearInvalidSession,
@@ -46,8 +47,10 @@ export default function RoboflyAdminPage() {
   const [isVerifyingOTP, setIsVerifyingOTP] = useState(false);
 
   // Add rate limiting states
-  const [remainingAttempts, setRemainingAttempts] = useState<number | null>(null);
-  const [rateLimitResetTime, setRateLimitResetTime] = useState<string | null>(null);
+  // const [remainingAttempts, setRemainingAttempts] = useState<number | null>(null);
+  const [rateLimitResetTime, setRateLimitResetTime] = useState<string | null>(
+    null
+  );
   const [isRateLimited, setIsRateLimited] = useState(false);
 
   // Session validation effect
@@ -197,10 +200,11 @@ export default function RoboflyAdminPage() {
         // Rate limited
         setIsRateLimited(true);
         setRateLimitResetTime(data.resetTime);
-        setRemainingAttempts(data.remainingAttempts);
+        // setRemainingAttempts(data.remainingAttempts);
         setMessage({
           type: "warning",
-          text: data.error || "Too many failed attempts. Please try again later.",
+          text:
+            data.error || "Too many failed attempts. Please try again later.",
         });
         return;
       }
@@ -242,13 +246,14 @@ export default function RoboflyAdminPage() {
         }
       } else {
         // Handle login failure
-        setRemainingAttempts(data.remainingAttempts || null);
-        
-        let errorMessage = data.error || "Login failed. Please check your credentials.";
-        if (data.remainingAttempts !== undefined && data.remainingAttempts > 0) {
-          errorMessage += ` ${data.remainingAttempts} attempt(s) remaining.`;
-        }
-        
+        // setRemainingAttempts(data.remainingAttempts || null);
+
+        const errorMessage =
+          data.error || "Login failed. Please check your credentials.";
+        // if (data.remainingAttempts !== undefined && data.remainingAttempts > 0) {
+        //   errorMessage += ` ${data.remainingAttempts} attempt(s) remaining.`;
+        // }
+
         setMessage({
           type: "error",
           text: errorMessage,
@@ -314,7 +319,7 @@ export default function RoboflyAdminPage() {
 
             setShowOTPModal(false);
             setPendingLoginData(null);
-            setRemainingAttempts(null);
+            // setRemainingAttempts(null);
             setIsRateLimited(false);
 
             setTimeout(() => {
@@ -427,11 +432,12 @@ export default function RoboflyAdminPage() {
         {/* Logo and Title */}
         <div className="text-center mb-8">
           <div className="mx-auto h-20 w-20 flex items-center justify-center bg-gradient-to-r from-amber-400 to-orange-500 mb-4">
-            <Image
-              src="/images/robofly.png"
+            <CldImage
+              src={imgSrc}
               alt="Robofly Logo"
               width={100}
               height={100}
+              loading="lazy"
             />
           </div>
           <h2 className="text-3xl font-extrabold text-gray-900">
@@ -462,7 +468,7 @@ export default function RoboflyAdminPage() {
         )}
 
         {/* Rate Limit Info */}
-        {remainingAttempts !== null && remainingAttempts <= 2 && !isRateLimited && (
+        {/* {remainingAttempts !== null && remainingAttempts <= 2 && !isRateLimited && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -472,7 +478,7 @@ export default function RoboflyAdminPage() {
               ⚠️ Warning: {remainingAttempts} attempt(s) remaining before temporary lockout
             </p>
           </motion.div>
-        )}
+        )} */}
 
         {/* Login Form */}
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
@@ -532,7 +538,9 @@ export default function RoboflyAdminPage() {
                 type="submit"
                 disabled={formSubmitting || isRateLimited}
                 className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 ${
-                  formSubmitting || isRateLimited ? "opacity-70 cursor-not-allowed" : ""
+                  formSubmitting || isRateLimited
+                    ? "opacity-70 cursor-not-allowed"
+                    : ""
                 }`}
               >
                 {formSubmitting ? (
