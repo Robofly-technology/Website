@@ -127,6 +127,7 @@ export default function RecognitionSection() {
                 width={90}
                 height={45}
                 className="object-contain h-12 w-auto"
+                loading="lazy"
               />
             </motion.div>
           );
