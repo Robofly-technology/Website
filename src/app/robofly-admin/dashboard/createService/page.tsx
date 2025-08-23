@@ -330,7 +330,7 @@ export default function CreateServicePage() {
                     className=" text-blue-500"
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://drive.google.com/file/d/11DSoTALPyBf5e_5LO28QnLoAN9bRgPH-/view?usp=drive_link"
+                    href="https://drive.google.com/file/d/1b6UkaQ6JlKT4toaSSh8NMhOsQHAX9g8_/view?usp=drive_link"
                   >
                     DEMO
                   </a>

@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -321,13 +320,21 @@ export default function CreateProductPage() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
-                 <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-500 mt-1">
                   Enter the Cloudinary image ID (e.g.,
-                  &quot;robofly/blogs/blog-image-1&quot;) - Image must be hosted on admin&nbsp;s cloudinary account, none other.
+                  &quot;robofly/blogs/blog-image-1&quot;) - Image must be hosted
+                  on admin&nbsp;s cloudinary account, none other.
                 </p>
-                 <p className="text-underlined text-blue-500"><a className=" text-blue-500" target="_blank"
-              rel="noopener noreferrer" href="https://drive.google.com/file/d/11DSoTALPyBf5e_5LO28QnLoAN9bRgPH-/view?usp=drive_link">DEMO</a></p>
-               
+                <p className="text-underlined text-blue-500">
+                  <a
+                    className=" text-blue-500"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://drive.google.com/file/d/1b6UkaQ6JlKT4toaSSh8NMhOsQHAX9g8_/view?usp=drive_link"
+                  >
+                    DEMO
+                  </a>
+                </p>
               </div>
               <div className="flex justify-end">
                 <button
