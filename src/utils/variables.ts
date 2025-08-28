@@ -105,6 +105,6 @@ export const validatePhone = (phone: string) =>
 
 export const imgSrc_h = "robofly_h_anrcao";
 export const imgSrc = "robofly_utfznw";
-export const videoSrc = "drone_tlsw7k";
+export const videoSrc = "drone_1_xajrr2";
 
 export const imgSrc_h_2 = "logo_H-Photoroom_txjxst";
