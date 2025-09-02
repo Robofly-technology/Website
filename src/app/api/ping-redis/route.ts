@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// For Next.js API route
-import { NextApiRequest, NextApiResponse } from "next";
 import { Redis } from "@upstash/redis";
 
 const redis = new Redis({
@@ -8,14 +6,20 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_TOKEN!,
 });
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function GET() {
   try {
     await redis.ping();
-    res.status(200).json({ message: "Redis pinged successfully" });
+    return new Response(
+      JSON.stringify({ message: "Redis pinged successfully" }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error) {
-    res.status(500).json({ error: "Failed to ping Redis" });
+    return new Response(JSON.stringify({ error: "Failed to ping Redis" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
