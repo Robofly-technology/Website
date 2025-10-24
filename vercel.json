@@ -6,10 +6,6 @@
       "schedule": "0 0 * * *"
     },
     {
-      "path": "/api/keepalive",
-      "schedule": "0 3 * * *"
-    },
-    {
       "path": "/api/ping-mongodb",
       "schedule": "0 12 * * *"
     }
