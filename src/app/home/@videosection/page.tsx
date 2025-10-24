@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { videoSrc } from "@/utils/variables";
 import ContactButton from "@/components/global/ContactButton";
 import { CldVideoPlayer } from "next-cloudinary";
+// @ts-expect-error: no type declarations for this side-effect CSS import
 import "next-cloudinary/dist/cld-video-player.css";
 
 // Loading Component

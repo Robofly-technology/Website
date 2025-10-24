@@ -2,7 +2,9 @@
 // import { Poppins } from 'next/font/google';
 import Navbar from "@/components/global/Navbar";
 import Footer from "@/components/global/Footer";
+import KeepAlivePing from "@/components/global/KeepAlivePing";
 // app/layout.tsx
+// @ts-expect-error: no type declarations for this side-effect CSS import
 import "./globals.css";
 import { Raleway, Playfair_Display, Lato } from "next/font/google";
 
@@ -36,6 +38,7 @@ export default function RootLayout({
         <link rel="icon" href="/images/robofly.png" type="image/png" />
       </head>
       <body>
+        <KeepAlivePing />
         <Navbar />
 
         <main className="min-h-screen overflow-x-hidden pt-16">{children}</main>

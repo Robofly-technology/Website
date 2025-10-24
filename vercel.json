@@ -4,6 +4,10 @@
     {
       "path": "/api/ping-redis",
       "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/keepalive",
+      "schedule": "0 3 * * *"
     }
   ]
 }
