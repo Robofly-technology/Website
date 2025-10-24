@@ -4,7 +4,6 @@ import Navbar from "@/components/global/Navbar";
 import Footer from "@/components/global/Footer";
 import KeepAlivePing from "@/components/global/KeepAlivePing";
 // app/layout.tsx
-// @ts-expect-error: no type declarations for this side-effect CSS import
 import "./globals.css";
 import { Raleway, Playfair_Display, Lato } from "next/font/google";
 
