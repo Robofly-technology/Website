@@ -3,7 +3,7 @@
   "crons": [
     {
       "path": "/api/ping-redis",
-      "schedule": "15 21 * * *"
+      "schedule": "25 21 * * *"
     },
     {
       "path": "/api/ping-mongodb",
