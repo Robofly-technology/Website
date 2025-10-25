@@ -19,7 +19,7 @@ export async function GET(request: Request) {
     const otpKey = `keepalive:otp:${now}`;
 
     // Store a short-lived key to 'touch' the database
-    await redis.setex(otpKey, 24 * 60 * 60, otp); // 24h TTL
+    await redis.setex(otpKey, 5 * 60, otp); // 5m TTL
 
     // Store metadata about the ping
     await redis.set("ping_redis:last_run", now, { ex: 30 * 24 * 60 * 60 }); // keep 30d
