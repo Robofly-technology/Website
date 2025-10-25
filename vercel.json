@@ -2,11 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "crons": [
     {
-      "path": "/api/ping-redis",
+      "path": "/api/ping-redis-v2",
       "schedule": "25 21 * * *"
     },
     {
-      "path": "/api/ping-mongodb",
+      "path": "/api/ping-mongodb-v2",
       "schedule": "20 21 * * *"
     }
   ]

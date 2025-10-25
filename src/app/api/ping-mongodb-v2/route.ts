@@ -1,6 +1,6 @@
 import { dbConnect } from "@/lib/dbConnect";
 import Logg from "@/models/logs";
-
+export const dynamic = 'force-dynamic';
 export async function GET(request: Request) {
   try {
     const authHeader = request.headers.get("authorization");
