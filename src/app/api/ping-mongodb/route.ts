@@ -10,6 +10,7 @@ export async function GET(request: Request) {
       // 2. If not, return an "Unauthorized" response
       return new Response("Unauthorized", { status: 401 });
     }
+    //
     // This is the correct header to check
     const userAgent = request.headers.get("user-agent");
     const triggeredByCron = userAgent === "vercel-cron/1.0";
