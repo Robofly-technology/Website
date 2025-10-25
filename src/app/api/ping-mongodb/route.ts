@@ -1,5 +1,5 @@
 import { dbConnect } from "@/lib/dbConnect";
-import mongoose from "mongoose";
+import Logg from "@/models/logs";
 
 export async function GET(request: Request) {
   try {
@@ -8,22 +8,31 @@ export async function GET(request: Request) {
     // Connect to MongoDB
     await dbConnect();
 
-    // Perform a simple ping operation using mongoose connection
-    const adminDb = mongoose.connection.db;
-    await adminDb?.admin().ping();
-
     const now = Date.now();
 
+    // Create a log entry to keep MongoDB active
+    // Set expiration to 5 minutes from now
+    const expiresAt = new Date(now + 5 * 60 * 1000); // 5 minutes in milliseconds
+
+    const logEntry = await Logg.create({
+      username: "automated",
+      change: "Database pinged by the automatic job",
+      expiresAt: expiresAt,
+    });
+
     // Log the ping for monitoring purposes
-    console.log("/api/ping-mongodb run", { triggeredByCron, ts: now });
+    console.log("/api/ping-mongodb run", {
+      triggeredByCron,
+      ts: now,
+      logId: logEntry._id,
+    });
 
     return new Response(
       JSON.stringify({
         message: "MongoDB pinged successfully",
         triggeredByCron,
         lastRun: now,
-        database: mongoose.connection.db?.databaseName,
-        readyState: mongoose.connection.readyState, // 1 = connected
+        logId: logEntry._id,
       }),
       {
         status: 200,
