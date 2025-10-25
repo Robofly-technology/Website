@@ -8,7 +8,9 @@ const redis = new Redis({
 
 export async function GET(request: Request) {
   try {
-    const triggeredByCron = !!request.headers.get("x-vercel-cron");
+    // This is the correct header to check
+    const userAgent = request.headers.get("user-agent");
+    const triggeredByCron = userAgent === "vercel-cron/1.0";
     const now = Date.now();
 
     // Ping Redis to keep the connection alive
